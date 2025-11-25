@@ -90,7 +90,30 @@ const userLogin = async (req, res) => {
     }
 };
 
+//Logout
+const userLogout = (req, res) => {
+    try {
+        // Clear the authentication cookie
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'strict',
+            path: '/'
+        });
+
+        res.status(200).json({
+            success: true,
+            message: 'Logged out successfully'
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message || 'Logout failed'
+        });
+    }
+};
 module.exports = {
     userSignup,
-    userLogin
+    userLogin,
+    userLogout
 };
