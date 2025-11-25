@@ -2,12 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
 //Middlewares
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 //DB Connection
 connectDB();

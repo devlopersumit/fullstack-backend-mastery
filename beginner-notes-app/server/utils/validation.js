@@ -1,41 +1,34 @@
 const validator = require('validator');
 
-//Signup Validation
-const validateSignupData = (req, res) => {
-    const {username, email, password} = req.body;
-    try {
-        //Username Validation
-        if(!username) throw new Error('USername is required');
-        if(username<3 || username>10) throw new Error('Username must be between 3 to 10 characters');
+const validateSignupData = (data = {}) => {
+    const { username, email, password } = data;
 
-        //Email Validation
-        if(!email) throw new Error('Email is Required');
-        if(!validator.isEmail(email)) throw new Error('Email is not valid');
+    if (!username || typeof username !== 'string') throw new Error('Username is required');
+    const uname = username.trim();
+    if (uname.length < 3 || uname.length > 10) throw new Error('Username must be between 3 to 10 characters');
 
-        //Password validation
-        if(!password) throw new Error('Password is required');
-        if(!validator.isStrongPassword(password)) throw new Error('Password must be strong');
-    } catch (error) {
-        console.log(error.message);
-    }
+    if (!email || typeof email !== 'string') throw new Error('Email is required');
+    const em = email.trim().toLowerCase();
+    if (!validator.isEmail(em)) throw new Error('Email is not valid');
+
+    if (!password || typeof password !== 'string') throw new Error('Password is required');
+    if (!validator.isStrongPassword(password)) throw new Error('Password must be strong');
+
+    return { username: uname, email: em, password };
 };
 
-
 //Login Validation
-const validateLoginData = (req, res) => {
-    const {email, password} = req.body;
-    try {
-        //Email Validation
-        if(!email) throw new Error('Email is Required');
-        if(!validator.isEmail(email)) throw new Error('Email is not valid');
+const validateLoginData = (data = {}) => {
+    const { email, password } = data;
 
-        //Password validation
-        if(!password) throw new Error('Password is required');
-        if(!validator.isStrongPassword(password)) throw new Error('Password must be strong');
-        
-    } catch (error) {
-        console.log(error.message)
-    }
+    if (!email || typeof email !== 'string') throw new Error('Email is required');
+    const em = email.trim().toLowerCase();
+    if (!validator.isEmail(em)) throw new Error('Email is not valid');
+
+    if (!password || typeof password !== 'string') throw new Error('Password is required');
+    if (password.length < 6) throw new Error('Password must be at least 6 characters');
+
+    return { email: em, password };
 };
 
 module.exports = {
