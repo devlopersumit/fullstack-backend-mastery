@@ -4,6 +4,7 @@ const connectDB = require('./config/db');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const authRouter = require('./routes/authRoutes');
+const notesRouter = require('./routes/notesRoutes');
 
 const app = express();
 
@@ -17,6 +18,9 @@ connectDB();
 
 //Auth Routes
 app.use('/', authRouter);
+
+//Notes Router
+app.use('/api/notes', notesRouter);
 
 //Test Route
 app.get('/', (req, res) => {
