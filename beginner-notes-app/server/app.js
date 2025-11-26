@@ -17,7 +17,7 @@ app.use(cookieParser());
 connectDB();
 
 //Auth Routes
-app.use('/', authRouter);
+app.use('/api/auth', authRouter);
 
 //Notes Router
 app.use('/api/notes', notesRouter);
