@@ -59,7 +59,7 @@ const Signup = () => {
             )
 
             if (response.data.message === 'User Created Successfully') {
-                navigate('/')
+                navigate('/dashboard')
             }
         } catch (error) {
             setError(error.response?.data?.message || 'Signup failed')
