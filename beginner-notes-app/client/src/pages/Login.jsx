@@ -95,7 +95,7 @@ const Login = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-2 rounded-lg hover:opacity-90 transition disabled:opacity-50"
+                        className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-2 rounded-lg hover:opacity-90 transition disabled:opacity-50 cursor-pointer"
                     >
                         {loading ? 'Logging in...' : 'Login'}
                     </button>
@@ -103,7 +103,7 @@ const Login = () => {
 
                 <p className="text-center text-gray-600 mt-6">
                     Don't have an account?{' '}
-                    <Link to="/signup" className="text-purple-500 font-semibold hover:underline">
+                    <Link to="/signup" className="text-purple-500 font-semibold hover:underline cursor-pointer">
                         Sign up
                     </Link>
                 </p>
