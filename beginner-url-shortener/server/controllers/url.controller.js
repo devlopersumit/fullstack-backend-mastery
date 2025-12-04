@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { URL } from "../models/url.models";
+import { URL } from "../models/url.models.js";
 
 //Create a Short URL
 export const createShortUrl = async (req, res) => {
@@ -12,6 +12,7 @@ export const createShortUrl = async (req, res) => {
         const existingUrl = await URL.findOne({originalUrl});
         if(existingUrl) {
             return res.json({
+                message:'URL already exist',
                 originalUrl:existingUrl.originalUrl,
                 shortUrl:`http://localhost:4000/${existingUrl.shortId}`
             })
